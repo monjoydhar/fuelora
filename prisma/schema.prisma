@@ -1,0 +1,10 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+
+model Product { id String @id @default(cuid()); name String; slug String @unique; description String; basePrice Int; images String[]; category String; isSubscription Boolean @default(false); variants ProductVariant[]; reviews Review[] }
+model ProductVariant { id String @id @default(cuid()); productId String; product Product @relation(fields:[productId],references:[id],onDelete:Cascade); flavor String; size String; priceOverride Int?; stock Int @default(0); sku String @unique; orderItems OrderItem[] }
+model User { id String @id @default(cuid()); name String?; email String @unique; passwordHash String?; oauthProvider String?; addresses Address[]; orders Order[] }
+model Address { id String @id @default(cuid()); userId String; user User @relation(fields:[userId],references:[id],onDelete:Cascade); line1 String; city String; postalCode String?; country String @default("Bangladesh") }
+model Order { id String @id @default(cuid()); userId String?; user User? @relation(fields:[userId],references:[id]); guestEmail String?; status String @default("PENDING"); subtotal Int; shipping Int; total Int; currency String @default("BDT"); paymentProvider String?; paymentReference String?; bkashPaymentId String?; bkashTrxId String?; createdAt DateTime @default(now()); items OrderItem[] }
+model OrderItem { id String @id @default(cuid()); orderId String; order Order @relation(fields:[orderId],references:[id],onDelete:Cascade); productVariantId String; productVariant ProductVariant @relation(fields:[productVariantId],references:[id]); quantity Int; unitPrice Int }
+model Review { id String @id @default(cuid()); productId String; product Product @relation(fields:[productId],references:[id],onDelete:Cascade); userName String; rating Int; body String; createdAt DateTime @default(now()) }

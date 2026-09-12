@@ -1,0 +1,2 @@
+import { NextResponse } from "next/server";
+export async function GET(req:Request){const url=new URL(req.url);const paymentID=url.searchParams.get("paymentID");const status=url.searchParams.get("status");return NextResponse.redirect(new URL(`/checkout?paymentID=${paymentID||""}&status=${status||""}`,url.origin));}
