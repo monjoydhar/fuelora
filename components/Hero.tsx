@@ -24,8 +24,8 @@ export function Hero() {
 
         {/* Bottom content */}
         <div className="mt-8 md:w-[48%]">
-          <p className="max-w-md text-base leading-7 text-white/75 md:text-lg">
-            Straightforward sports nutrition for training days, recovery days,
+          <p className="max-w-md text-base uppercase leading-7 text-white/75 md:text-lg">
+            Straight-forward sports nutrition for training days, recovery days,
             and everything between.
           </p>
 

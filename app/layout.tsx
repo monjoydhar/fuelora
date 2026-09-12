@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
+import CustomCursor from "@/components/CustomCursor";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Preloader } from "@/components/Preloader";
 import { Header } from "@/components/Header";
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:left-4 focus:top-4 focus:bg-white focus:p-3">Skip to content</a>
         <Header />
         {children}
+        <CustomCursor />
         <CartDrawer />
       </body>
     </html>

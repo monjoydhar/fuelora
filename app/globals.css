@@ -33,3 +33,62 @@ button, input { font: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+#fuel-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 999px;
+  background:#F3EEE3;
+  z-index: 999;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.25s var(--ease-fuel, cubic-bezier(0.65, 0, 0.35, 1)),
+    height 0.25s cubic-bezier(0.65, 0, 0.35, 1), background 0.25s ease;
+}
+
+#fuel-cursor.is-active {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  background: rgba(243, 238, 227, 0.15);
+  border: 1px solid #F3EEE3;
+}
+
+/* --- Split-hover characters --- */
+.split-hover {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+
+.split-hover .char-stack {
+  display: inline-block;
+  white-space: pre;
+}
+
+.split-hover .char-stack span {
+  display: inline-block;
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+  animation-duration: 30s;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
