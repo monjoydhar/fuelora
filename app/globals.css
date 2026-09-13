@@ -92,3 +92,21 @@ button, input { font: inherit; }
   to { transform: translateX(-50%); }
 }
 
+.page-transition {
+  animation: pageEnter 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+ 
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+html.preloader-seen .preloader-panel {
+  display: none !important;
+}
+
